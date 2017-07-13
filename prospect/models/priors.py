@@ -104,7 +104,8 @@ class Prior(object):
         self.update(**kwargs)
 
         if len(kwargs) > 0:
-            self.random_state = kwargs.get('random_state', None)
+            seed = kwargs.get('seed', None)
+            self.random_state = np.random.RandomState(seed)
 
 
     def update(self, **kwargs):
