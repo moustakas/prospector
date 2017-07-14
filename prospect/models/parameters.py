@@ -123,7 +123,7 @@ class ProspectorParams(object):
             kwargs = self._config_dict[k].get('prior_args', {})
             this_prior = np.sum(func(theta[inds], **kwargs))
 
-            #if np.isinf(this_prior):
+            #if (not np.isfinite(this_prior)):
             #    print('In models.ProspectorParams._prior_product parameter {} is out of bounds.'.format(k))
             lnp_prior += this_prior
         return lnp_prior

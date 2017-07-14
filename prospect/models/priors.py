@@ -103,13 +103,6 @@ class Prior(object):
         self.name = name
         self.update(**kwargs)
 
-        if len(kwargs) > 0:
-            seed = kwargs.get('seed', None)
-        else:
-            seed = None
-        self.random_state = np.random.RandomState(seed)
-
-
     def update(self, **kwargs):
         """Update `params` values using alias.
         """
@@ -158,8 +151,7 @@ class Prior(object):
         if len(kwargs) > 0:
             self.update(**kwargs)
         return self.distribution.rvs(*self.args, size=len(self),
-                                     loc=self.loc, scale=self.scale,
-                                     random_state=self.random_state)
+                                     loc=self.loc, scale=self.scale)
 
     def unit_transform(self, x, **kwargs):
         """Go from a value of the CDF (between 0 and 1) to the corresponding
