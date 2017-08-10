@@ -154,11 +154,11 @@ def write_hdf5(hfile, run_params, model, obs, sampler, powell_results,
 
     # ----------------------
     # Sampling info
-    try:
+    if 'acceptance_fraction' in sampler.keys():
         # emcee
         a = sampler.acceptance_fraction
         write_emcee_h5(hf, sampler, model, sampling_initial_center, tsample)
-    except(AttributeError):
+    else:
         # nestle
         write_nestle_h5(hf, sampler, model)
 
